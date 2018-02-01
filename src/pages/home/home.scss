@@ -1,0 +1,31 @@
+page-home,
+.home {
+
+  ion-slides {
+    height: auto;
+  }
+
+  .cat-list {
+    font-size: 0.8em;
+  }
+
+  .cat-icon {
+    padding: 0.2rem;
+    font-size: 5em;
+    font-weight: bold;
+  }
+
+  .price {
+    font-size: 1.0em;
+  }
+
+  .inner{
+        ion-card{
+            display: table-cell;
+            border: solid 2px #FFF8DC;
+            width: 100%;
+            padding: 0.8em;
+            margin: 0;
+        }
+    }
+}

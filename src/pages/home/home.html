@@ -30,43 +30,27 @@
     </ion-slide>
   </ion-slides>
 
-  <!--List of items-->
-  <div *ngFor="let sub of subcategory">
+  <ion-grid class="list-cards">
+    <div *ngFor="let sub of subcategory">
     <h4 text-center>{{sub.name}}</h4>
     
     <!-- <ion-scroll scrollX="true" style="height:35%" *ngIf="sub?.products.length>1">  -->
-      <ion-row nowrap>
-        <div class="inner">
-          <ion-card *ngFor="let item of sub?.products" col-6 class="product" (click)="viewItem(item.id)">
-            <img src="http://localhost:8000/uploads/{{ item.images }}" alt="{{ item.jdl_Pdk }}">
-            <div class="price" text-center>{{ item.jdl_Pdk }}</div>
-            <div class="price" text-center>{{ item.harga_awal | currency:'Rp':true }}</div>
-          </ion-card>
-        </div>
-      </ion-row>
-    <!-- </ion-scroll> -->
-  </div>
+      <ion-grid class="list-cards">
+          <ion-row >
+             
+                <ion-col *ngFor="let item of sub?.products" col-6 class="product" (click)="viewItem(item.id)">
+                  <img src="http://localhost:8000/uploads/{{ item.images }}" alt="{{ item.jdl_Pdk }}">
+                  <div class="price" text-center>{{ item.jdl_Pdk }}</div>
+                  <div class="price" text-center>{{ item.harga_awal | currency:'Rp':true }}</div>
+                </ion-col>
+             
+            </ion-row>
+        
+      </ion-grid>
+      
+     <!-- </ion-scroll> -->
+  </div> 
+    
+  </ion-grid>
   
-
-  <h4 text-center>JUST FOR YOU</h4>
-  <ion-scroll scrollX="true" style="height:35%">
-    <div class="inner">
-      <ion-card *ngFor="let item of items" col-6 class="product" (click)="viewItem(item.id)">
-        <img src="{{ item.thumb }}" alt="{{ item.name }}">
-        <div class="price" text-center>{{ item.name }}</div>
-        <div class="price" text-center>{{ item.price | currency:'Rp':true }}</div>
-      </ion-card>
-    </div>
-  </ion-scroll>
-
-  <h4 text-center>JUST FOR YOU</h4>
-  <ion-scroll scrollX="true" style="height:35%">
-    <div class="inner">
-    <ion-card *ngFor="let item of items" col-6 class="product" (click)="viewItem(item.id)">
-        <img src="{{ item.thumb }}" alt="{{ item.name }}">
-        <div class="price" text-center>{{ item.name }}</div>
-        <div class="price" text-center>{{ item.price | currency:'Rp':true }}</div>
-      </ion-card>
-    </div>
-  </ion-scroll>
 </ion-content>

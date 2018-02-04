@@ -3,6 +3,9 @@ import {NavController} from 'ionic-angular';
 
 import {UserService} from '../../services/user-service';
 import {ChangePasswordPage} from "../change-password/change-password";
+import {ProfilePage} from '../profile/profile'
+import {AlamatPage} from '../alamat/alamat'
+import {FreelancePage} from '../freelance/freelance'
 
 /*
  Generated class for the LoginPage page.
@@ -22,5 +25,17 @@ export class MyAccountPage {
   // go to changing password page
   changePassword() {
     this.nav.push(ChangePasswordPage);
+  }
+
+  profile(){
+    this.nav.push(ProfilePage);
+  }
+
+  alamat() {
+    this.nav.push(AlamatPage);
+  }
+
+  freelance(){
+    this.nav.push(FreelancePage);
   }
 }

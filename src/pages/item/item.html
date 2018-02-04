@@ -39,8 +39,8 @@
       <h1 class="price" ion-text color="danger" margin-top *ngIf="item?.harga_awal">{{ item?.harga_awal | currency:'IDR':true
         }}</h1>
       <h1 class="price" ion-text color="danger" margin-top *ngIf="!item?.harga_awal">{{ item?.harga_awal | currency:'IDR':true }}</h1>
-      <h2 class="origin-price text-decoration" ion-text color="gray" margin-top *ngIf="item?.harga_awal">{{ item?.harga_awal |
-        currency:'IDR':true }}</h2>
+      <!-- <h2 class="origin-price text-decoration" ion-text color="gray" margin-top *ngIf="item?.harga_awal">{{ item?.harga_awal |
+        currency:'IDR':true }}</h2> -->
     </div>
 
     <ion-grid>
@@ -63,24 +63,59 @@
 
   <!--item options-->
   <div class="card light-bg" margin-top>
+    <ion-item>
+      <ion-label>Kuantitas (box)</ion-label>
+      <ion-select [(ngModel)]="form.kuantitas" (ionChange)="onChange()">
+        <ion-label>Kuantitas (box)</ion-label>
+        <ion-option *ngFor="let x of quantity" value="{{x.text}}">{{x?.text}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Jenis Kertas (box)</ion-label>
+      <ion-select [(ngModel)]="form.jenis_kertas">
+        <ion-label>Jenis Kertas</ion-label>
+        <ion-option *ngFor="let x of jenis_kertas" value="{{x.text}}">{{x?.text}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Finishing</ion-label>
+        <ion-select [(ngModel)]="form.jenis_cetak">
+          <ion-label>Finishing</ion-label>
+          <ion-option *ngFor="let x of finishing" value="{{x.text}}">{{x?.text}}</ion-option>
+        </ion-select>
+      </ion-item>
+    <ion-item>
+      <ion-label>Nama:</ion-label>
+      <ion-input type="text" [(ngModel)]="form.nama" name="nama"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nama Perusahaan:</ion-label>
+      <ion-input type="text" [(ngModel)]="form.nama_perusahaan" name="nama_perusahaan"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Alamat:</ion-label>
+      <ion-input type="text" [(ngModel)]="form.alamat" name="alamat"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email:</ion-label>
+      <ion-input type="text" [(ngModel)]="form.email" name="email"></ion-input>
+    </ion-item>
     <ion-item class="no-border">
       <div>
-        <div>aw</div>
+        <div>
+          
+        </div>
         <div>
           <span ion-text color="gray" class="pull-left" *ngIf="item?.harga_awal == 0">Free shipping</span>
           <span ion-text color="gray" class="pull-left" *ngIf="item?.harga_awal != 0">Shipping: {{ item?.harga_awal | currency:'IDR':true}}</span>
         </div>
-      </div>
-
-      <div item-right>
-        <span class="bold" ion-text color="secondary">SELECT</span>
       </div>
     </ion-item>
 
     <ion-grid>
       <ion-row>
         <ion-col>
-          <button ion-button block class="btn-add-cart">ADD TO CART</button>
+          <button ion-button block class="btn-add-cart" (click)="addToCart()">ADD TO CART</button>
         </ion-col>
         <ion-col>
           <button ion-button color="primary" block>BUY NOW</button>

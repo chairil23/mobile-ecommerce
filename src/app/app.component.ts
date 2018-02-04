@@ -14,6 +14,7 @@ import {SettingsPage} from '../pages/settings/settings';
 import {CategoriesPage} from '../pages/categories/categories';
 import {WishListPage} from '../pages/wish-list/wish-list';
 import {MyOrderPage} from '../pages/my-order/my-order';
+import{MessagePage} from '../pages/message/message';
 // end import pages
 
 @Component({
@@ -42,19 +43,17 @@ export class MyApp {
       count: 0,
       component: CategoriesPage
     },
-
-    {
-      title: 'WishList',
-      icon: 'md-heart-outline',
-      count: 2,
-      component: WishListPage
-    },
-
     {
       title: 'My Order',
       icon: 'ios-timer-outline',
       count: 0,
       component: MyOrderPage
+    },
+
+    {
+      title: 'Message',
+      icon: 'ios-mail-outline',
+      component: MessagePage
     },
 
     {
@@ -69,13 +68,6 @@ export class MyApp {
       icon: 'ios-cart-outline',
       count: 1,
       component: CartPage
-    },
-
-    {
-      title: 'Settings',
-      icon: 'ios-settings-outline',
-      count: 0,
-      component: SettingsPage
     },
 
     {

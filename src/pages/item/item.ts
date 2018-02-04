@@ -19,21 +19,85 @@ export class ItemPage {
   // item info
   public item: any;
   public id;
+  public images: any;
+   form= {
+    product_id: '',
+    kuantitas: '',
+    jenis_kertas: '',
+    model: '',
+    kain: '',
+    ukuran: '',
+    warna: '',
+    jenis_cetak: '',
+    bahan: '',
+    sisi: '',
+    jilid: '',
+    lembar: '',
+    cetak_depan: '',
+    cetak_belakang: '',
+    cetak_lengan_kanan: '',
+    cetak_lengan_kiri: '',
+    kaos_metode: '',
+    nama: '',
+    nama_perusahaan: '',
+    no_telpon: '',
+    alamat: '',
+    email: '',
+    jabatan: '',
+    material: '',
+    logo: ''
+  };
+  finishing= [
+    {text: 'Laminating Glossy'},
+    {text: 'Embosse'}
+  ]
+    
+  
+  quantity: Array<Object>;
+  jenis_kertas: Array<Object>;
+  
+  
 
   constructor(public nav: NavController, public itemService: ItemService, 
     public modalCtrl: ModalController, public apiProvider: ApiProvider, public navParams: NavParams) {
     // get the first item as sample data
     // this.item = itemService.getItem(1);
-
+    this.quantity= [
+      {text: 50},
+      {text: 100}
+    ]
+  
+    this.jenis_kertas= [
+      {text: 'Standard'},
+      {text: 'Extra Fancy'}
+    ]
     this.id = navParams.get("id");
 
     this.getItem(this.id);
+    this.form.product_id = this.id
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AdduserPage');
+  }
+
+  onChange(){
+    console.log(this.form.kuantitas);
+  }
+
+  addToCart() {
+    this.apiProvider.postToCart(this.form).then(data => {
+      console.log(data);
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   getItem(id) {
     this.apiProvider.getProduct(id).then(data =>{
       this.item = data;
-      console.log(this.item);
+      this.images = this.item.images;
+      console.log(this.images);
     }).catch(err => {
       console.log(err);
     });

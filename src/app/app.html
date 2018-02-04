@@ -4,8 +4,8 @@
     <!-- User profile -->
     <div padding class="menu-left menu-bg">
       <a menuClose>
-        <img class="profile-picture" src="assets/img/user/adam.jpg">
-        <h4 ion-text color="light">Adam Lambert</h4>
+        <img class="profile-picture" src="">
+        <h4 ion-text color="light">Chairil Azmi</h4>
       </a>
     </div>
 
@@ -13,7 +13,7 @@
       <button ion-item menuClose *ngFor="let page of pages" (click)="openPage(page)">
         <ion-icon item-left name="{{ page.icon }}"></ion-icon>
         {{ page.title }}
-        <ion-badge color="danger" item-right *ngIf="page.count">{{ page.count }}</ion-badge>
+        <!-- <ion-badge color="danger" item-right *ngIf="page.count">{{ page.count }}</ion-badge> -->
       </button>
     </ion-list>
   </ion-content>

@@ -5,6 +5,7 @@ import {UserService} from "../../services/user-service";
 import {HomePage} from '../home/home';
 // import {MyApp} from '../../app/app.component'
 import {ForgotPasswordPage} from "../forgot-password/forgot-password";
+import { Storage } from '@ionic/storage';
 
 /*
  Generated class for the LoginPage page.
@@ -22,7 +23,9 @@ export class LoginPage {
   loginData = { email:'', password:'' };
   data: any;
 
-constructor(public nav: NavController, public userService: UserService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {}
+constructor(public nav: NavController, public userService: UserService, 
+  public loadingCtrl: LoadingController, private toastCtrl: ToastController,
+  private storage: Storage) {}
   ionViewDidLoad() {
     console.log('VIew Login Sukses');
   }
@@ -31,8 +34,20 @@ doLogin() {
     this.userService.login(this.loginData).then((result) => {
       this.loading.dismiss();
       this.data = result;
+
+      // this.storage.set('user_id', this.data.user_id);
+      // this.storage.set('token', this.data.api_token);
+      // let token;
+      // this.storage.get('token').then((val) => {
+      //   console.log(val);
+      //   token = val;
+      //   console.log(token, 'wew');
+      // })
       
-      localStorage.setItem('token', this.data.access_token);
+      
+      
+      localStorage.setItem('token', this.data.api_token);
+      localStorage.setItem('user_id', this.data.id)
       this.nav.setRoot(HomePage);
       console.log('Berhasil Masuk');
     }, (err) => {

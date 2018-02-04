@@ -1,0 +1,58 @@
+<!--
+  Generated template for the MessageItemPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>{{message.jdl_Pdk}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+      <ion-item *ngFor="let message of list" no-lines>
+        <!-- <div class="chat-status" text-center>
+          <span class="chat-date">{{message.created_at | date:'short'}}</span>
+          <span class="chat-content-center">{{message.message}}</span>
+        </div> -->
+        <!-- <ng-template #message> -->
+          <div class="chat-message" text-right *ngIf="message.fr_user_id === user_id">
+            <div class="right-bubble">
+              <span class="msg-name">Me</span>
+              <p class="msg-date">{{message.created_at | date:'short'}}</p>
+              <span text-wrap>{{message.message}}</span>
+            </div>
+          </div>
+          <div class="chat-message" text-left *ngIf="message.fr_user_id !== user_id">
+            <div class="left-bubble">
+              <span class="msg-name">{{message.freelance}}</span>
+              <p class="msg-date">{{message.created_at | date:'short'}}</p>
+              <img src="http://localhost:8000/messages/{{message.images}}">
+              <span text-wrap>{{message.message}}</span>
+              <div *ngIf="message.images">
+                <button ion-button>Perubahan</button>
+                <button ion-button>Setuju</button>
+              </div>
+            </div>
+          </div>
+        <!-- </ng-template> -->
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-textarea #txtChat type="text" placeholder="Type a message" [(ngModel)]="data.message" name="message"></ion-textarea>
+        </ion-col>
+        <ion-col col-2 (click)="sendMessage()">
+          <ion-icon name="paper-plane"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>

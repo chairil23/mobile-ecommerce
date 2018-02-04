@@ -6,6 +6,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpModule} from "@angular/http";
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 // import services
 import {CategoryService} from '../services/category-service';
@@ -42,8 +43,13 @@ import {TabAttributePage} from '../pages/tab-attribute/tab-attribute';
 import {TabFilterPage} from '../pages/tab-filter/tab-filter';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {WishListPage} from '../pages/wish-list/wish-list';
+import {MessagePage} from '../pages/message/message';
 import { ApiProvider } from '../providers/api/api';
-
+import { MessageItemPage } from '../pages/message-item/message-item';
+import {ProfilePage} from '../pages/profile/profile';
+import {AlamatPage} from '../pages/alamat/alamat';
+import {FreelancePage} from '../pages/freelance/freelance';
+import {PembayaranPage} from '../pages/pembayaran/pembayaran'
 // end import pages
 
 @NgModule({
@@ -70,9 +76,19 @@ import { ApiProvider } from '../providers/api/api';
     TabAttributePage,
     TabFilterPage,
     WelcomePage,
-    WishListPage
+    WishListPage,
+    MessagePage,
+    MessageItemPage,
+    ProfilePage,
+    AlamatPage,
+    FreelancePage,
+    PembayaranPage
   ],
   imports: [
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     BrowserModule,HttpModule,HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -100,7 +116,13 @@ import { ApiProvider } from '../providers/api/api';
     TabAttributePage,
     TabFilterPage,
     WelcomePage,
-    WishListPage
+    WishListPage,
+    MessagePage,
+    MessageItemPage,
+    ProfilePage,
+    AlamatPage,
+    FreelancePage,
+    PembayaranPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
     StatusBar,

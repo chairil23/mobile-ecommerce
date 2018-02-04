@@ -1,0 +1,31 @@
+<!--
+  Generated template for the MessagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Message</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="my-order common-bg">
+  <ion-list no-margin>
+    <ion-item class="list-full-border" *ngFor="let message of list?.order_message" (click)="viewMessage(message)">
+      <ion-icon name="chatboxes" item-end></ion-icon>
+      {{message.jdl_Pdk}}
+      <ion-item>
+        <p ion-text> 
+          Freelance: {{message.freelance}}
+        </p>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,52 @@
+<!--
+  Generated template for the PembayaranPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>pembayaran</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="card light-bg">
+    
+    <div class="card-header" padding>
+      <div>
+        <span class="pull-left" ion-text color="gray">Total</span>
+        <span class="pull-right bold" ion-text color="danger">{{ 1000000 | currency:'IDR':true }}</span>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <ion-list>
+        <ion-item text-wrap>
+            Mohon ikuti langkah-langkah berikut:
+            <br/>
+            1. Pembayaran melalui transfer ke Bank Mandiri atas Nama Technographic dengan nomor Rekening 1111 231 109 231
+            <br/>
+            2. Tunjukkan bukti pembayaran dengan memfoto/menscan bukti pembayarannya dengan menguploadnya melaui tombol dibawah ini
+            <br/>
+            3. Pesanan akan diproses setelah melakukan pembayaran dan menunjukkan bukti pembayaran sesuai llangkah no 2
+            <br/>
+            4. Pesanan akan hilang jika tidak melakukan pembayaran dalam kurun waktu 24 jam dimulai dari pembuatan pesanan
+        
+        </ion-item>
+       
+        
+
+    </ion-list>
+    
+        
+        
+        
+   
+    <button ion-button>Browse</button>
+    <button ion-button color="color">Upload</button>
+  </div>
+
+</ion-content>

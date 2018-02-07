@@ -67,8 +67,14 @@ export class CartPage {
   }
 
   // remove item
-  remove(itemIndex) {
-    this.cart.splice(itemIndex, 1);
+  remove(itemIndex, id) {
+    this.apiProvider.deleteItem(id).then(res => {
+      if (res) {
+        this.cart.splice(itemIndex, 1);
+      }
+    }).catch(err => {
+      console.log(err);
+    })
   }
 
   // place order
@@ -76,17 +82,16 @@ export class CartPage {
     this.nav.setRoot(OrderConfirmPage, {cart: this.cart});
   }
 
-  subTotal() {
-    let total;
-    this.cart.forEach(element => {
-      total = total + (element.harga_awal * element.kuantitas)      
-    });
-    this._subtotal = total;
+  subTotal(harga, qty) {
+    return harga * qty;
   }
 
   total() {
-    this._total = this._subtotal + 20000;
-    
+    let total = 0;
+    this.cart.forEach(element => {
+      total = total + (element.harga_awal * element.kuantitas);
+    });
+    return total;
   }
 
     // getShipping() {

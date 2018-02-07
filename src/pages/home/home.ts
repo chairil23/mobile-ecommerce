@@ -7,6 +7,8 @@ import {CategoryPage} from "../category/category";
 import {ItemPage} from "../item/item";
 import {SearchPage} from "../search/search";
 import {CartPage} from "../cart/cart";
+import {MyApp} from "../../app/app.component"
+import { ApiProvider } from '../../providers/api/api';
 
 
 /*
@@ -41,12 +43,15 @@ export class HomePage {
   public items: any;
   public url: 'http://localhost:8000/uploads/'
 
-  constructor(public nav: NavController, public categoryService: CategoryService, public itemService: ItemService) {
+  constructor(public nav: NavController, public categoryService: CategoryService, 
+    public itemService: ItemService, public apiProvider: ApiProvider) {
     // this.categories = categoryService.getAll();
 
     itemService.getAll().subscribe((response) => {
       this.subcategory = response
       console.log(this.subcategory);
+
+
     })
   }
 

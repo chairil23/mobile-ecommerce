@@ -15,6 +15,7 @@ import {CategoriesPage} from '../pages/categories/categories';
 import {WishListPage} from '../pages/wish-list/wish-list';
 import {MyOrderPage} from '../pages/my-order/my-order';
 import{MessagePage} from '../pages/message/message';
+import {ShareProvider} from '../providers/share/share'
 // end import pages
 
 @Component({
@@ -28,6 +29,8 @@ export class MyApp {
   public rootPage: any;
 
   public nav: any;
+
+  public user: any;
 
   public pages = [
     {
@@ -71,22 +74,23 @@ export class MyApp {
     },
 
     {
-      title: 'Logout',
-      icon: 'log-out',
+      title: 'Login/Register',
+      icon: 'log-in',
       count: 0,
       component: LoginPage
     },
     // import menu
   ];
 
-  constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    this.rootPage = WelcomePage;
+  constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, share: ShareProvider) {
+    this.rootPage = LoginPage;
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.user = share.user;
     });
   }
   openPage(page) {

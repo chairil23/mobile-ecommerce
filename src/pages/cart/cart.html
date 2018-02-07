@@ -49,25 +49,26 @@
               <div class="clear"></div>
             </div>
             <div class="pull-right bottom-info text-lg trash-btn">
-              <ion-icon name="trash" color="gray" class="pull-right" (click)="remove(idx)"></ion-icon>
+              <ion-icon name="trash" color="gray" class="pull-right" (click)="remove(idx, item.id)"></ion-icon>
               <div class="clear"></div>
             </div>
           </div>
         </div>
       </ion-item>
+      <div class="card" margin-top>
+        <div class="card-footer" padding>
+          <div>
+            <span class="pull-left" ion-text color="gray">Subtotal</span>
+            <span class="pull-right" ion-text color="gray">'{{ subTotal(item.harga_awal, item.kuantitas) | currency:'IDR':true }}'</span>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
     </ion-list>
   </div>
 
   <!--Total price-->
-  <div class="card" margin-top>
-    <div class="card-footer" padding>
-      <div>
-        <span class="pull-left" ion-text color="gray">Subtotal</span>
-        <span class="pull-right" ion-text color="gray">'{{ 1000000 | currency:'IDR':true }}'</span>
-        <div class="clear"></div>
-      </div>
-    </div>
-  </div>
+  
 
 </ion-content>
 

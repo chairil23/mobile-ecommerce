@@ -16,6 +16,9 @@ import {StoreService} from '../services/store-service';
 import {CartService} from '../services/cart-service';
 import {OrderService} from '../services/order-service';
 import {NewsService} from '../services/news-service';
+import { ApiProvider } from '../providers/api/api';
+import {ShareProvider} from '../providers/share/share'
+
 
 // end import services
 // end import services
@@ -44,7 +47,6 @@ import {TabFilterPage} from '../pages/tab-filter/tab-filter';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {WishListPage} from '../pages/wish-list/wish-list';
 import {MessagePage} from '../pages/message/message';
-import { ApiProvider } from '../providers/api/api';
 import { MessageItemPage } from '../pages/message-item/message-item';
 import {ProfilePage} from '../pages/profile/profile';
 import {AlamatPage} from '../pages/alamat/alamat';
@@ -134,7 +136,8 @@ import {PembayaranPage} from '../pages/pembayaran/pembayaran'
     CartService,
     OrderService,
     NewsService,
-    ApiProvider
+    ApiProvider,
+    ShareProvider
     /* import services */
   ]
 })

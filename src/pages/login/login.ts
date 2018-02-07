@@ -6,6 +6,7 @@ import {HomePage} from '../home/home';
 // import {MyApp} from '../../app/app.component'
 import {ForgotPasswordPage} from "../forgot-password/forgot-password";
 import { Storage } from '@ionic/storage';
+import { ShareProvider } from '../../providers/share/share';
 
 /*
  Generated class for the LoginPage page.
@@ -25,7 +26,7 @@ export class LoginPage {
 
 constructor(public nav: NavController, public userService: UserService, 
   public loadingCtrl: LoadingController, private toastCtrl: ToastController,
-  private storage: Storage) {}
+  private storage: Storage, public share: ShareProvider) {}
   ionViewDidLoad() {
     console.log('VIew Login Sukses');
   }
@@ -33,9 +34,16 @@ doLogin() {
     this.showLoader();
     this.userService.login(this.loginData).then((result) => {
       this.loading.dismiss();
-      this.data = result;
+      this.data = result; 
 
-      // this.storage.set('user_id', this.data.user_id);
+      this.storage.ready().then(() => {
+        this.storage.set('user', this.data).then(() => {
+          this.storage.get('user').then(result => {
+            this.share.user = result;
+            console.log(this.share.user)
+          });
+        });
+      });
       // this.storage.set('token', this.data.api_token);
       // let token;
       // this.storage.get('token').then((val) => {

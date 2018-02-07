@@ -1,5 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 
 /**
@@ -9,7 +9,6 @@ import { ApiProvider } from '../../providers/api/api';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-message-item',
   templateUrl: 'message-item.html',

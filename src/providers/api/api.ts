@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ShareProvider } from '../share/share';
 
 /*
   Generated class for the ApiProvider provider.
@@ -11,23 +12,11 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class ApiProvider {
   apiUrl = 'http://localhost:8000/api';
-  public token: any;
+  user = {user_id: '', api_token: ''}
   
 
-  constructor(public http: HttpClient, private storage: Storage) {
-    this.storage.get('token').then(val => {
-      this.token = val;
-      console.log('storage get')
-     }).catch(err => {
-       console.log(err);
-     });
-    console.log('Hello ApiProvider Provider');
-    console.log(this.getToken(), 'getToken');
-    console.log(this.token, 'token');
-  }
-
-  getToken(){
-   
+  constructor(public http: HttpClient, private storage: Storage, public share: ShareProvider) {
+    
   }
 
   doLogin(form) {
@@ -66,7 +55,7 @@ export class ApiProvider {
   postToCart(data){
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/item', JSON.stringify(data), {
-        headers: {'Authorization': 'Bearer '+ localStorage.getItem('token'),
+        headers: {'Authorization': 'Bearer '+ this.share.user.api_token,
         'Content-Type': 'application/json'}
       }).subscribe(res => {
         resolve(res);
@@ -80,7 +69,7 @@ export class ApiProvider {
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl+'/item', {
         headers: {
-          'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          'Authorization': 'Bearer '+ this.share.user.api_token,
           'Content-Type': 'application/json'
         }
       }).subscribe(res => {
@@ -96,7 +85,7 @@ export class ApiProvider {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/order', form, {
         headers: {
-          'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          'Authorization': 'Bearer '+ this.share.user.api_token,
           'Content-Type': 'application/json'
         }
       }).subscribe(res => {
@@ -110,7 +99,7 @@ export class ApiProvider {
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl+'/transaction', {
         headers: {
-          'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          'Authorization': 'Bearer '+ this.share.user.api_token,
           'Content-Type': 'application/json'
         }
       }).subscribe(res => {
@@ -125,7 +114,7 @@ export class ApiProvider {
     return new Promise((resolve, reject) => {
       this.http.get('/cost'+kurir, {
         headers: {
-          'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          'Authorization': 'Bearer '+ this.share.user.api_token,
           'Content-Type': 'application/json'
         }
       }).subscribe(res => {
@@ -140,7 +129,7 @@ export class ApiProvider {
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl+'/messages',{
         headers: {
-          'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          'Authorization': 'Bearer '+ this.share.user.api_token,
           'Content-Type': 'application/json'
         }
       })
@@ -155,7 +144,7 @@ export class ApiProvider {
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl+'/messages/'+id, {
         headers: {
-          'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          'Authorization': 'Bearer '+ this.share.user.api_token,
           'Content-Type': 'application/json'
         }
       }).subscribe(res => {
@@ -169,7 +158,7 @@ export class ApiProvider {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/sendmessage', data, { 
         headers: {
-          'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          'Authorization': 'Bearer '+ this.share.user.api_token,
           'Content-Type': 'application/json'
         }
       }).subscribe(res => {
@@ -177,6 +166,21 @@ export class ApiProvider {
       }, err => {
         reject(err);
       });
+    });
+  }
+  deleteItem(id) {
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.apiUrl+'/item/'+id, {
+        headers: {
+          'Authorization': 'Bearer '+ this.share.user.api_token,
+          'Content-Type': 'application/json'
+        }
+      })
+        .subscribe(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        });
     });
   }
 }
